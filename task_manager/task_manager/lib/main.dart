@@ -11,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Task Manager',
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Task Manager'),
     );
   }
 }
@@ -40,28 +39,49 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   var tasks = <String>[];
-  
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Colors.blue ,
-      ),
+      appBar: AppBar(title: Text(widget.title), backgroundColor: Colors.blue),
       body: Column(
         children: [
-          Expanded(child: 
-          ListView.builder(itemCount: tasks.length, itemBuilder: (context, index) => ,),
+          Expanded(
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (context, index) =>
+                  ListTile(title: Text(tasks[index])),
+            ),
           ),
         ],
       ),
-        
-        
-      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          TextEditingController textController = TextEditingController();
+
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text("Add task"),
+              content: TextField(controller: textController),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      tasks.add(textController.text);
+                    });
+                  },
+                  child: Text("Add"),
+                ),
+              ],
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
