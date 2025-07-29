@@ -46,18 +46,33 @@ class _MyHomePageState extends State<MyHomePage> {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), backgroundColor: Colors.blue),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) =>
-                  ListTile(title: Text(tasks[index])),
-            ),
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              setState(() {
+                tasks.clear();
+              });
+            },
           ),
         ],
       ),
+      body: tasks.isEmpty
+          ? Center(child: Text('No tasks yet'))
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) =>
+                        ListTile(title: Text(tasks[index])),
+                  ),
+                ),
+              ],
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           TextEditingController textController = TextEditingController();
