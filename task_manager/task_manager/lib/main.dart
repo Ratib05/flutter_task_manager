@@ -88,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     setState(() {
                       tasks.add(textController.text);
                     });
+                    Navigator.pop(context);
                   },
                   child: Text("Add"),
                 ),
