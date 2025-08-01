@@ -67,8 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: tasks.length,
-                    itemBuilder: (context, index) =>
-                        ListTile(title: Text(tasks[index])),
+                    itemBuilder: (context, index) => ListTile(
+                      title: Text(tasks[index]),
+
+                      // The checkbox always shows as unticked (false),
+                      // tapping it triggers onChanged, which removes the task,
+                      // no need to track checkbox state at all.
+                      trailing: Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                            tasks.removeAt(index);
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ],
