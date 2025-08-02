@@ -23,15 +23,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -40,11 +31,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var tasks = <String>[];
+  int? _hoveredIndex;
 
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -67,21 +58,39 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: tasks.length,
-                    itemBuilder: (context, index) => ListTile(
-                      title: Text(tasks[index]),
-
-                      // The checkbox always shows as unticked (false),
-                      // tapping it triggers onChanged, which removes the task,
-                      // no need to track checkbox state at all.
-                      trailing: Checkbox(
-                        value: false,
-                        onChanged: (value) {
+                    itemBuilder: (context, index) {
+                      return MouseRegion(
+                        onEnter: (_) {
                           setState(() {
-                            tasks.removeAt(index);
+                            _hoveredIndex = index;
                           });
                         },
-                      ),
-                    ),
+                        onExit: (_) {
+                          setState(() {
+                            _hoveredIndex = null;
+                          });
+                        },
+                        child: ListTile(
+                          tileColor: _hoveredIndex == index
+                              ? const Color.fromARGB(51, 33, 150, 243)
+                              : Colors.transparent,
+
+                          title: Text(tasks[index]),
+
+                          // The checkbox always shows as unticked (false),
+                          // tapping it triggers onChanged, which triggers setState,
+                          // no need to track checkbox state at all.
+                          trailing: Checkbox(
+                            value: false,
+                            onChanged: (value) {
+                              setState(() {
+                                tasks.removeAt(index);
+                              });
+                            },
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
