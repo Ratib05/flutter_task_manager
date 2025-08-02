@@ -10,6 +10,7 @@ A beginner-friendly Flutter app that helps users create, complete, and delete da
 - ➕ Add new tasks
 - ✅ Mark tasks as complete
 - ❌ Delete tasks by ticking a checbox
+- ❌ Delete all tasks using a button
 - 🎨 Simple, clean user interface
 
 ---
