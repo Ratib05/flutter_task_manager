@@ -1,6 +1,6 @@
 # 📝 Simple Task Manager App - Flutter
 
-A beginner-friendly Flutter app that helps users create, complete, and delete daily tasks. Perfect for learning core Flutter concepts!
+A beginner-friendly Flutter app that helps users create, complete, and delete daily tasks. Perfect for learning core Flutter concepts
 
 ---
 
