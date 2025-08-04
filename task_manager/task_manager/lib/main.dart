@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
       // root widget of the app
       title: 'Task Manager', // App title
 
+      debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
         // App theme settings
         colorScheme: ColorScheme.fromSeed(
