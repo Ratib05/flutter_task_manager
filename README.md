@@ -17,7 +17,9 @@ A beginner-friendly Flutter app that helps users create, complete, and delete da
 
 ## 📸 Screenshots
 
-*(Add your own screenshots here)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1a577abf-c053-46ae-9d8a-e8ed0a8416c4" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/423e692e-79e4-4acd-b39f-3b99121d0dcb" />
 
 ---
 
